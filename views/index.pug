@@ -1,0 +1,21 @@
+html
+    include includes/header
+    div#userListing
+        h1 User Listing
+        p#successMessage=successMessage
+        each user, index in users
+            div.user
+                div.userHead
+                    h4=user.name
+                div.userDetails
+                    p='User ID: ' + user.username
+                    p='Email: ' + user.email
+                    p='Age: ' + user.age
+                form(method="post").userAction
+                    input(type="hidden", name="username", value=user.username)
+                    i(class='fas fa-trash', onclick='deleteUser(this)')
+                    i(class='fas fa-pen', onclick='editUser(this)')
+        if users.length < 1
+            p No users
+        a(href='/addUser').add
+            h3 + Add User
